@@ -5,7 +5,7 @@ import (
 	"github.com/meilisearch/meilisearch-go"
 )
 
-func addDoc(fileName string) (status string) {
+func AddDocFile(fileName string, originLink string) (err error) {
 	client := meilisearch.NewClient(meilisearch.ClientConfig{
 		Host:   common.MEILIHOST,
 		APIKey: common.MEILIAPIKey,
@@ -13,25 +13,25 @@ func addDoc(fileName string) (status string) {
 
 	HTMLContent, err := common.GetHTMLFileContent(common.HTMLPath + fileName)
 	if err != nil {
-		return
+		return err
 	}
 	title, err := common.GetHTMLTitle(HTMLContent)
 	if err != nil {
-		return
+		return err
 	}
 	HTMLPuretext, err := common.ExtractHTMLText(HTMLContent)
 	if err != nil {
-		return
+		return err
 	}
 
 	documents := []map[string]interface{}{
 		{
 			"title":    title,
 			"filename": fileName,
-			"link":     "",
+			"link":     originLink,
 			"content":  HTMLPuretext,
 		},
 	}
 	_, err = client.Index(common.MEILIBlogsIndex).AddDocuments(documents)
-	return "Done"
+	return nil
 }

@@ -60,7 +60,38 @@ func AddDocByURL(c *gin.Context) {
 }
 
 func AddDocByHTMLFile(c *gin.Context) {
-	// todo
+	// 原始网页链接
+	orginLink := c.PostForm("link")
+	htmlFile, err := c.FormFile("file")
+	filePath := common.ARCHIVEFILELOACTION + htmlFile.Filename
+	if err != nil {
+		c.JSON(500, gin.H{
+			"Status":  "0",
+			"Message": "上传文件失败",
+		})
+		return
+	}
+
+	if err := c.SaveUploadedFile(htmlFile, filePath); err != nil {
+		c.JSON(500, gin.H{
+			"Status":  "0",
+			"Message": "上传文件失败",
+		})
+		return
+	}
+
+	if err := search.AddDocFile(htmlFile.Filename, orginLink); err != nil {
+		c.JSON(500, gin.H{
+			"Status":  "0",
+			"Message": "上传文件失败",
+		})
+		return
+	}
+
+	c.JSON(200, gin.H{
+		"Status":  "1",
+		"Message": "",
+	})
 }
 
 var Templates embed.FS
