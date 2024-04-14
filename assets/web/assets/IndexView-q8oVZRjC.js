@@ -1,0 +1,1 @@
+import{d as o,c as s,a as t,u as n,r as a,o as c,_}from"./index-DMEOYrWZ.js";const r={class:"index-view"},p=o({__name:"IndexView",setup(d){return n(),(i,u)=>{const e=a("search-input");return c(),s("div",r,[t(e)])}}}),l=_(p,[["__scopeId","data-v-c61b0478"]]);export{l as default};

@@ -135,7 +135,9 @@ watch(() => route.query.p, (newData) => {
 .index-view {
     display: grid;
     place-items: center;
-    margin-left: 45%;
+    width: 99vw;
+    margin-top: 5vh;
+    margin-bottom: 2vh;
 }
 
 .item-card {

@@ -1,9 +1,9 @@
 <template>
     <div class="index-view">
-        <div>
-            <!--logo div-->
+        <!-- <div>
+            
 
-        </div>
+        </div> -->
         <search-input></search-input>
     </div>
 </template>
@@ -23,6 +23,7 @@ const search = () => {
 .index-view {
     display: grid;
     place-items: center;
-    margin: 45%;
+    width: 100vw;
+    height: 100vh;
 }
 </style>
